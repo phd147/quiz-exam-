@@ -12,3 +12,5 @@ export const FETCH_QUESTION_SUCCESS = 'FETCH_QUESTION_SUCCESS';
 export const CHANGE_HANDLER = 'CHANGE_HANDLER';
 
 export const SUBMIT = 'SUBMIT';
+
+export const FETCH_USER = 'FETCH_USER';

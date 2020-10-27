@@ -15,12 +15,15 @@ import {Provider} from 'react-redux';
 import Authreducer from '../src/store/reducers/auth';
 import exammingReducer from '../src/store/reducers/examming';
 
+import examReducer from '../src/store/reducers/exam';
+
 import thunk from 'redux-thunk';
 
 
 const reducer = combineReducers({
    examming : exammingReducer,
-   auth : Authreducer
+   auth : Authreducer,
+   exam : examReducer
 });
 
 

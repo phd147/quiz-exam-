@@ -1,0 +1,11 @@
+.counter {
+    position: fixed ;
+    top : 20%;
+    right : 20%;
+    border : 2px solid red ;
+    color : red ;
+    width : 150px;
+    display : flex ;
+    justify-content: center;
+    align-items: center;
+}

@@ -23,7 +23,9 @@ export const fetchQuestion = () => {
         dispatch({
             type : actionTypes.FETCH_QUESTION_SUCCESS,
             questionArr : questionArr
-        })
+        });
+        
+
     }
 };
 

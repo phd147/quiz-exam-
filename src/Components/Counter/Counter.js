@@ -1,5 +1,5 @@
 import React from 'react';
-
+import classes from './Counter.module.css';
 
 
 class Counter extends React.Component {
@@ -12,6 +12,7 @@ class Counter extends React.Component {
         }
    }
 
+   
   
 
 
@@ -41,7 +42,7 @@ class Counter extends React.Component {
 
 
         return (
-            <div>
+            <div className={classes.counter}>
                 {this.state.timeout ? this.props.timeOutCmp : <p>{minutes} : {seconds}</p> }
             </div>
         )
@@ -52,6 +53,10 @@ class Counter extends React.Component {
            console.log(this.state.remainingTime);
            this.setState( prevState => ({remainingTime : prevState.remainingTime - 1000}))
        },1000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timer);
     }
 
 

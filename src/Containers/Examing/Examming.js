@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {fetchQuestion,changeHandler,submitHandler} from '../../store/action/thunk/examming';
 
 
+import Counter from '../../Components/Counter/Counter';
+
 
 // radio material ui .
 import Radio from '@material-ui/core/Radio';
@@ -29,6 +31,7 @@ class Examming extends React.Component {
 
     componentDidMount(){
         this.props.fetchQuestion();
+        
     }
 
 
@@ -42,7 +45,7 @@ class Examming extends React.Component {
                 this.props.questionArr.map((el,id,els) => {
                     return (<div key={el.id}>
                          <FormControl component="fieldset">
-                        <FormLabel component="legend">{`${id+1} ${el.question}`}</FormLabel>
+                        <FormLabel component="legend">{` Câu ${id+1} : ${el.question}`}</FormLabel>
                         <RadioGroup aria-label="gender" name="gender1" value={el.userAnswer} onChange={(event) =>this.props.onChangeHandler(id,event.target.value) }>
                           <FormControlLabel value="A" control={<Radio />} label={el.answer['A']} />
                           <FormControlLabel value="B" control={<Radio />} label={el.answer['B']} />
@@ -63,8 +66,10 @@ class Examming extends React.Component {
         console.log(this.props.questionArr);
         return (
             <div>
+                <Counter timeOutCmp={<h1>Time out</h1>} time={60000}/>
                  <h2>examming </h2>
                     {content}
+                    
                     <button onClick={() => this.props.submit(this.props.questionArr)}>submit my exam</button>
             </div>
            
