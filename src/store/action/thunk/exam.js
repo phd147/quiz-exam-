@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as actionTypes from '../actionTypes';
 
 
+
 export const fetchUser = (userId) => {
     return async dispatch => {
         console.log('getting user information');

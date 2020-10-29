@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 //action 
 import {fetchUser} from '../../store/action/thunk/exam';
 
+import {changeIncommingPath} from '../../store/action/thunk/route';
+
 
 class Exam extends React.Component {
     render(){
@@ -22,8 +24,16 @@ class Exam extends React.Component {
     }
 
     componentDidMount(){
-        console.log('component did mount  user id ' + this.props.userId);
-       this.props.fetchUser(this.props.userId);
+        console.log('component did mount [EXAM.js]  user id ' + this.props.userId);
+        if(this.props.auth){
+            console.log('co auth roi khong can init')
+            this.props.fetchUser(this.props.userId);
+            return ;
+        }
+
+        this.props.changeIncommingPath('exam');
+        this.props.history.push('/initAuth')
+        
     }
 
 
@@ -32,7 +42,8 @@ class Exam extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userId : state.auth.userId
+        userId : state.auth.userId,
+        auth : state.auth.tokenId !== null 
     }
 
 }
@@ -40,7 +51,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUser : (userId) => dispatch(fetchUser(userId))
+        fetchUser : (userId) => dispatch(fetchUser(userId)),
+        changeIncommingPath : (path) => dispatch(changeIncommingPath(path))
     }
 }
 

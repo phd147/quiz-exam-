@@ -14,3 +14,8 @@ export const CHANGE_HANDLER = 'CHANGE_HANDLER';
 export const SUBMIT = 'SUBMIT';
 
 export const FETCH_USER = 'FETCH_USER';
+
+
+export const CHANGE_ROUTE = 'CHANGE_ROUTE';
+
+export const CLEAR_TOKEN = 'CLEAR_TOKEN';

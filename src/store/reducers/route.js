@@ -1,23 +1,31 @@
-import * as actionTypes from '../action/actionTypes';
+import *  as actionTypes from '../action/actionTypes';
 
 
 const initialState = {
-    test : false 
+    incommingPath : null 
 }
+
 
 
 const reducer = (state = initialState, action) => {
+
     switch(action.type){
-        case (actionTypes.TEST) : 
+
+        case(actionTypes.CHANGE_ROUTE) : 
             return {
                 ...state, 
-                test : !state.test
+                incommingPath : action.path
             }
+
+
+
+
+
         default : 
             return state ;
     }
+
 }
 
+export default reducer ;
 
-
-export default reducer;

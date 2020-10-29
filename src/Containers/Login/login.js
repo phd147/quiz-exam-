@@ -47,26 +47,14 @@ class Login extends React.Component {
 
     componentDidMount(){
         
-        const arrayofquestion = [];
-
-        axios.get('https://quiz-exam-bk.firebaseio.com/math.json').then(res =>{
-            console.log(res.data)
-            for(let key in res.data){
-                arrayofquestion.push(
-                    {
-                        ...res.data[key],
-                        id : key 
-                    }
-                )
-            };
-            console.log(arrayofquestion);
-        });
+       
     }
 
 
     render(){
         return (<div>
-            {this.props.auth ? <Redirect to="/student"/> : null}
+            {(this.props.auth && this.props.incommingPath === null) ? <Redirect to="/student"/> : null}
+            {(this.props.auth && this.props.incommingPath !== null) ? <Redirect to={`/${this.props.incommingPath}`}/> : null}
              <h1>login</h1>
             <input type="text" placeholder="email" ref={this.emailRef}/>
             <input type="password" placeholder="password" ref={this.passRef} />
@@ -81,7 +69,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        auth : state.auth.tokenId !== null 
+        auth : state.auth.tokenId !== null ,
+        incommingPath : state.route.incommingPath
     }
 }
 
