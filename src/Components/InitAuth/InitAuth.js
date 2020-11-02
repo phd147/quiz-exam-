@@ -26,7 +26,7 @@ class InitAuth extends React.Component {
                 this.props.clearToken();
             },expireTime - new Date().getTime());
 
-            this.props.history.push(`/${this.props.incommingPath}`)
+            this.props.history.push(`/${this.props.incomingPath}`)
 
             return ;
 
@@ -46,15 +46,17 @@ class InitAuth extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        incommingPath : state.route.incommingPath
+        incomingPath : state.route.incomingPath
     }
 };
 
 const mapDispatchToProps = dispatch => {
+
     return {
         initAuth : () => dispatch(initAuth()),
         clearToken : () => dispatch({type : actionTypes.CLEAR_TOKEN})
     }
+
 }
 
 

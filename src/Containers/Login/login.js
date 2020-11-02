@@ -1,5 +1,6 @@
 // import React, { useRef, useState } from 'react'; 
 import React from 'react';
+
 import {connect} from 'react-redux';
 
 import * as actionTypes from '../../store/action/actionTypes';
@@ -11,11 +12,7 @@ import * as actionTypes from '../../store/action/actionTypes';
 
 import {submitHandler} from '../../store/action/thunk/login';
 
-import axios from 'axios';
-
-import {Redirect} from 'react-router-dom'
-
-
+import {Redirect} from 'react-router-dom';
 
 
 
@@ -46,15 +43,13 @@ class Login extends React.Component {
     }
 
     componentDidMount(){
-        
+        console.log('hello');
        
     }
-
-
     render(){
         return (<div>
-            {(this.props.auth && this.props.incommingPath === null) ? <Redirect to="/student"/> : null}
-            {(this.props.auth && this.props.incommingPath !== null) ? <Redirect to={`/${this.props.incommingPath}`}/> : null}
+            {(this.props.auth && this.props.incomingPath === null) ? <Redirect to="/student"/> : null}
+            {(this.props.auth && this.props.incomingPath !== null) ? <Redirect to={`/${this.props.incomingPath}`}/> : null}
              <h1>login</h1>
             <input type="text" placeholder="email" ref={this.emailRef}/>
             <input type="password" placeholder="password" ref={this.passRef} />
@@ -66,11 +61,10 @@ class Login extends React.Component {
 }
 
 
-
 const mapStateToProps = state => {
     return {
         auth : state.auth.tokenId !== null ,
-        incommingPath : state.route.incommingPath
+        incomingPath : state.route.incomingPath
     }
 }
 
@@ -83,7 +77,6 @@ const mapDispatchToProps = dispatch => {
 
     }
 }
-
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(Login) ;

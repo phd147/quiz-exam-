@@ -13,10 +13,6 @@ class Counter extends React.Component {
    }
 
    
-  
-
-
-
    shouldComponentUpdate(props,state){
         if(state.remainingTime === 0 && state.timeout === false ){
             clearInterval(this.timer);
@@ -27,10 +23,6 @@ class Counter extends React.Component {
         }
       return true ;
    }
-
-
-
-
 
     render(){
         let minutes = Math.floor((this.state.remainingTime/ 60000));
@@ -48,6 +40,8 @@ class Counter extends React.Component {
         )
 
     }   
+
+
     componentDidMount(){
        this.timer = setInterval(() => {
            console.log(this.state.remainingTime);
@@ -55,12 +49,13 @@ class Counter extends React.Component {
        },1000);
     }
 
+
     componentWillUnmount(){
         clearInterval(this.timer);
     }
 
-
 }
+
 
 
 export default Counter ;
