@@ -5,10 +5,23 @@ import {NavLink} from 'react-router-dom';
 
 import classes from './Student.module.css';
 
+import {connect} from 'react-redux';
+
+import * as actionTypes from '../../store/action/actionTypes';
+
 
 
 class Student extends React.Component {
 
+
+    componentDidMount(){
+        console.log(this.props.auth);
+        if(!this.props.auth){
+            this.props.changeRoute();
+            this.props.history.push('/initAuth');
+        }
+    }
+   
 
     render(){
         return (
@@ -37,5 +50,17 @@ class Student extends React.Component {
 
 }
 
+const mapStateToProps = state => {
+    return {
+        auth : state.auth.tokenId !== null 
+    }
+}
 
-export default Student; 
+const mapDispathToProps = dispatch => {
+    return {
+        changeRoute : () => dispatch({type : actionTypes.CHANGE_ROUTE,path : 'student'})
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispathToProps)(Student); 

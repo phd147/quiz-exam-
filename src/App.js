@@ -16,7 +16,8 @@ import InitAuth from './Components/InitAuth/InitAuth';
 class App extends React.Component {
     render(){
         return (
-            <div>
+            <div>   
+                <p> hello world</p>
                 
                 <Switch>
                     <Route path="/counter" render = {() => <Counter timeOutCmp={<p>Time out</p>} time = {60000}/>}/>

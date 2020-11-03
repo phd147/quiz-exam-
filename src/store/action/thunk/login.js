@@ -6,8 +6,7 @@ import * as actionTypes from '../actionTypes';
 
 
 export const submitHandler = (mail,pass) => {
-    console.log('heeeeeeeeeeeeeeloooooooo');
-    console.log(mail,pass)
+    
     return  dispatch => {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCx6BfXfUjJXEGnZmLWkJLYENFmjr7FZf8',{
             email : mail,
