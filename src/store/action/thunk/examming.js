@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export const fetchQuestion = () => {
     return async dispatch => {
-        const res = await axios.get('https://quiz-exam-bk.firebaseio.com/math.json');
+        const res = await axios.get('https://quiz-exam-bk.firebaseio.com/eng.json');
         const data = res.data ;
        
         const questionArr = [] ;
@@ -43,15 +43,15 @@ export const changeHandler = (key,value) => {
 }
 
 
-export const submitHandler = answer => {
+export const submitHandler = answers => {
     return dispatch => {
-        answer = answer.filter((el,id,els) => {
+        answers = answers.filter((el,id,els) => {
             return el.correct === el.userAnswer 
         });
-        console.log(answer.length);
+        console.log(answers.length);
         dispatch({
             type : actionTypes.SUBMIT,
-            correctAnswers : answer.length
+            correctAnswers : answers.length
         })
     }
 }

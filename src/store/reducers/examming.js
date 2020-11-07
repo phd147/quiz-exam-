@@ -3,7 +3,8 @@ import * as actionTypes from '../action/actionTypes';
 
 const initialState = {
     questionArr : [] ,
-    math : 0 
+    math : 0 ,
+    loading : false 
     
 };
 

@@ -7,17 +7,23 @@ import Login from './Containers/Login/login1';
 import Student from './Containers/Student/Student';
 import Exam from './Containers/Exam/Exam';
 
-import Examming from './Containers/Examing/Examming';
+import PostQuestion from '../src/Components/PostQuestion/PostQuestion';
+
+import Examming from './Containers/Examing/EngExam';
 
 // init Auth from local Storage 
 import InitAuth from './Components/InitAuth/InitAuth';
+
+import BlackDrop from '../src/Components/BlackDrop/BlackDrop';
+
+import Modal from '../src/Components/Modal/Modal';
 
 
 class App extends React.Component {
     render(){
         return (
             <div>   
-                <p> hello world</p>
+               
                 
                 <Switch>
                     <Route path="/counter" render = {() => <Counter timeOutCmp={<p>Time out</p>} time = {60000}/>}/>
@@ -26,7 +32,13 @@ class App extends React.Component {
                     <Route path="/exam" component={Exam}/>
                     <Route path="/examming" component={Examming}/>
                     <Route path="/initAuth" component={InitAuth}/>
+                    <Route path="/post" component={PostQuestion}/>
+
+                    {/* test  */}
+                    <Route path="/blackdrop" component={BlackDrop}/>
+                    <Route path="/modal" component={Modal}/>
                 </Switch>
+
                 
             </div>
            

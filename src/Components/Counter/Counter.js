@@ -44,7 +44,7 @@ class Counter extends React.Component {
 
     componentDidMount(){
        this.timer = setInterval(() => {
-           console.log(this.state.remainingTime);
+           
            this.setState( prevState => ({remainingTime : prevState.remainingTime - 1000}))
        },1000);
     }
