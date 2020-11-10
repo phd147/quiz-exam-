@@ -19,3 +19,8 @@ export const FETCH_USER = 'FETCH_USER';
 export const CHANGE_ROUTE = 'CHANGE_ROUTE';
 
 export const CLEAR_TOKEN = 'CLEAR_TOKEN';
+
+export const SELECT_SUBJECT = 'SELECT_SUBJECT';
+
+
+export const ERROR_LOGIN = 'ERROR_LOGIN';

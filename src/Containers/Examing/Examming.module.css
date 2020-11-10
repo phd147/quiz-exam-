@@ -31,11 +31,11 @@ body,html {
 }
 
 .title {
-    color : #706fd3 ;
+    color : #fff ;
     display : flex ;
     flex-direction: column;
     align-items: center;
-    background-color: #55E6C1;
+    background-color: #4D90FE;
 }
 
 .title > *{ 
@@ -52,7 +52,7 @@ body,html {
  
 .container{
     padding : 0 ;
-    background-color: #55E6C1;
+    background-color: #4D90FE;
 }
 
 .buttonParent {
@@ -60,4 +60,8 @@ body,html {
     justify-content: center;
     align-items: center;
     padding-bottom : 20px;
+}
+
+.questions {
+    margin-top : 20px;
 }

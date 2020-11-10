@@ -3,22 +3,60 @@ import * as actionTypes from '../actionTypes';
 import axios from 'axios';
 
 
+const shuffleArr = arr => {
+    for(let i=arr.length -1 ; i>=0;i--){
+        const j = Math.floor(Math.random()*i);
+        const temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
 
-export const fetchQuestion = () => {
+
+
+
+export const fetchQuestion = (subject) => {
     return async dispatch => {
-        const res = await axios.get('https://quiz-exam-bk.firebaseio.com/eng.json');
+        console.log("subject" + subject);
+        const res = await axios.get(`https://quiz-exam-bk.firebaseio.com/${subject}.json`);
         const data = res.data ;
        
-        const questionArr = [] ;
-        for(let key in data){
-            questionArr.push(
-                {
-                   ...data[key],
-                   id : key ,
-                   userAnswer : ''
-                }
-            )
-        };
+        let questionArr = [] ;
+
+        if(subject ==='eng'){
+            for(let key in data){
+                questionArr.push(
+                    {
+                       ...data[key],
+                       id : key ,
+                       userAnswer : ''
+                    }
+                )
+            };
+        }
+
+
+        // subject === 'cpa '
+        else {
+            for(let key in data){
+                questionArr.push({
+                    ...data[key],
+                    id : key ,
+                    userAnswer : ''
+                })
+            };
+            shuffleArr(questionArr);
+            console.log(questionArr);
+            questionArr = questionArr.slice(1,31);
+        }
+
+       
+
+
+        
+
+
+        
         
         dispatch({
             type : actionTypes.FETCH_QUESTION_SUCCESS,
@@ -43,8 +81,8 @@ export const changeHandler = (key,value) => {
 }
 
 
-export const submitHandler = answers => {
-    return dispatch => {
+export const submitHandler = (answers,subject,userId) => {
+    return async dispatch => {
         answers = answers.filter((el,id,els) => {
             return el.correct === el.userAnswer 
         });
@@ -52,6 +90,13 @@ export const submitHandler = answers => {
         dispatch({
             type : actionTypes.SUBMIT,
             correctAnswers : answers.length
-        })
+        });
+        const userIdKey = await  axios.get('https://quiz-exam-bk.firebaseio.com/user.json');
+        axios.put(`https://quiz-exam-bk.firebaseio.com/user/${userIdKey}.json`, {
+            [subject] : answers.length
+        });
     }
-}
+};
+
+
+

@@ -6,7 +6,8 @@ const initialState = {
     
     userId : null ,
     tokenId : null ,
-    expireTime : null 
+    expireTime : null ,
+    error : false 
 }
 
 
@@ -31,6 +32,13 @@ const reducer  = (state = initialState, action) => {
                 tokenId : null ,
                 userId : null ,
                 expireTime : null 
+            }
+
+
+        case(actionTypes.ERROR_LOGIN) : 
+            return {
+                ...state, 
+                error : true 
             }
 
         default : 

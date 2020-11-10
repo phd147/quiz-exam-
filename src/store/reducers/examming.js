@@ -3,8 +3,9 @@ import * as actionTypes from '../action/actionTypes';
 
 const initialState = {
     questionArr : [] ,
-    math : 0 ,
-    loading : false 
+   
+    loading : false ,
+    subject : null 
     
 };
 
@@ -38,6 +39,13 @@ const reducer = (state = initialState, action) => {
                 math : action.correctAnswers
             }
         
+
+        case(actionTypes.SELECT_SUBJECT) : 
+            return {
+                ...state, 
+                subject : action.path
+            }
+
         default : 
             return state ;
     }

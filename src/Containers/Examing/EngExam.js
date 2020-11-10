@@ -2,6 +2,8 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
+
+// redux thunk middleware 
 import {fetchQuestion,changeHandler,submitHandler} from '../../store/action/thunk/examming';
 
 
@@ -42,7 +44,7 @@ class Examming extends React.Component {
 
     componentDidMount(){
         console.log('component did mount');
-        this.props.fetchQuestion();
+        this.props.fetchQuestion(this.props.subject);
 
         setTimeout(() => {
             this.props.submit(this.props.questionArr);
@@ -83,6 +85,14 @@ class Examming extends React.Component {
                     
                     let question = el.question ;
 
+                    if([26,27].includes(id)){
+                        const questionArrEl = el.question.split('//');
+                        question = <span>{questionArrEl[0]}<p>{questionArrEl[1]}</p></span>
+                    }
+                    
+
+
+
                     if([14,15,16,17,22,23,24].includes(id)){
                         const questionArrEl = el.question.split('//');
                         
@@ -93,8 +103,15 @@ class Examming extends React.Component {
                     return (<div className={classes.question} key={el.id}>
                         {/* {id= 22 ? <h2>Mark the letter A, B, C or D to indicate the underlined part that needs correction in each of the
 following questions.</h2> : null} */}
+                        { this.props.subject === 'eng' && id === 28 ? <h2>Mark the letter A, B, C, or D to indicate the sentence that best combines each pair of sentences in
+the following questions.</h2> : null}
 
-                        {id === 22 ? <div><h2>Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the
+
+                        { this.props.subject === 'eng' && id === 26 ? <h2>Mark the letter A, B, C or D to indicate the option that best completes following exchanges.</h2> : null}
+
+
+
+                        { this.props.subject === 'eng' && id === 22 ? <div><h2>Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the
 correct answer to each of the questions.</h2><p style={{"fontSize":"20px"}}>
 There was a man who had four sons. He wanted his sons to learn not to judge things too quickly. So he
 sent them each on a quest, in turn, to go and look at a pear tree that was a great distance away. The first
@@ -111,12 +128,12 @@ at the end, when all the seasons are up. If you give up when it’s winter, you 
 spring, the beauty of your summer, fulfilment of your fall.
 Don’t judge a life by one difficult season. Don’t let the pain of one season destroy the joy of all the rest.</p></div> : null}
 
-                        {id === 0 ? <h2>Mark the letter to indicate the correct answer to each of the following questions</h2> : null}
-                        {id === 14 ? <h2>Mark the letter A, B, C or D to indicate the word(s) CLOSEST in meaning to the underlined
+                        { this.props.subject === 'eng'&& id === 0 ? <h2>Mark the letter to indicate the correct answer to each of the following questions</h2> : null}
+                        { this.props.subject === 'eng' && id === 14 ? <h2>Mark the letter A, B, C or D to indicate the word(s) CLOSEST in meaning to the underlined
 word(s) in each of the following questions.</h2> : null}
-                        {id === 16 ? <h2>Mark the letter A, B, C or D to indicate the word(s) OPPOSITE in meaning to the underlined
+                        { this.props.subject === 'eng' && id === 16 ? <h2>Mark the letter A, B, C or D to indicate the word(s) OPPOSITE in meaning to the underlined
 word(s) in each of the following questions.</h2>:null}
-                            {id === 18 ? <div><h2>Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the
+                            {  this.props.subject === 'eng' && id === 18 ? <div><h2>Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the
 correct word or phrase that best fits each of the numbered blanks</h2><p style={{ "fontSize" : "20px"}}>It is natural for young people to be critical of their parents at times and to blame them for most of the (19)
 __________ between them. They have always complained, more or less justly, that their parents are oldfashioned, possessive and dominant; that they do not trust their children to deal with obstacles; (20)
 ___________ they talk too much about certain problems and that they have no sense of humor, at least in
@@ -131,7 +148,7 @@ If you plan to control your life, co-operation can be part of that plan. You can
 parents, into doing things the ways you want. You can impress others with your sense of responsibility
 and (23) _________, so that they will give you the authority to do what you want to do.</p></div>:null}
                          <FormControl component="fieldset" className={classes.formAnswer} >
-                        <FormLabel component="legend"><div>Question {id+1} : {question}</div> </FormLabel>
+                        <FormLabel component="legend"><div><span style={{"color" : "#6c5ce7", "fontWeight":"bold"}}>Question {id+1} </span> : {question}</div> </FormLabel>
                         <RadioGroup aria-label="gender" name="gender1" value={el.userAnswer} onChange={(event) =>this.props.onChangeHandler(id,event.target.value) }>
                             
                             
@@ -163,7 +180,7 @@ and (23) _________, so that they will give you the authority to do what you want
 
         return (
            
-                <div style={{"backgroundColor" : "#fff",
+                <div style={{"backgroundColor" : "#F6F7F9",
                 "margin" : "0",
                 "padding" : "0"
 }}>
@@ -175,7 +192,7 @@ and (23) _________, so that they will give you the authority to do what you want
         <Grid item xs={12} md={4}></Grid>
         <Grid item xs={12} md={4} className={classes.title}>
                 <h2>Bài thi trắc nghiệm </h2>
-                <h3>Môn : Tiếng Anh</h3>
+                <h3>Môn : {this.props.subject === 'eng'  ? "English" : "Computer Architecture"}</h3>
                 <h3>Thời gian : 40 phút</h3>
         </Grid>
 
@@ -183,9 +200,9 @@ and (23) _________, so that they will give you the authority to do what you want
      </Grid>
     
 
-        <Grid container>
+        <Grid container >
             <Grid item xs={12} md={2}></Grid>
-            <Grid item xs={12} md={8} className={this.props.questionArr.length===0 ? classes.content : null}>{content}</Grid>
+            <Grid item xs={12} md={8} classes={this.props.questionArr.length===0 ? classes.content : classes.questions}>{content}</Grid>
             <Grid item xs={12} md={2}></Grid>
 
         </Grid>
@@ -229,14 +246,15 @@ and (23) _________, so that they will give you the authority to do what you want
 const mapStateToProps = state => {
     return {
         questionArr : state.examming.questionArr,
-        loading : state.examming.loading 
+        loading : state.examming.loading ,
+        subject : state.examming.subject 
     }
 }
 
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchQuestion : () => dispatch(fetchQuestion()),
+        fetchQuestion : (subject) => dispatch(fetchQuestion(subject)),
         onChangeHandler : (key,value) => dispatch(changeHandler(key,value)),
         submit : (answerArr) => dispatch(submitHandler(answerArr))
     }

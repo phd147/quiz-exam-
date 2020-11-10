@@ -11,13 +11,34 @@ import {fetchUser} from '../../store/action/thunk/exam';
 
 import {changeIncommingPath} from '../../store/action/thunk/route';
 
+// material ui 
+import {Button} from '@material-ui/core';
+
+
+import * as actionTypes from '../../store/action/actionTypes';
+
 
 class Exam extends React.Component {
+
+    state = {
+        subject : [{name : 'English',path : 'eng'},{name : 'Computer Architecture',path:'cpA'}]
+    }
+
+    clickHandler = path => {
+        this.props.select(path);
+        
+        this.props.history.push('/examming');
+    }
+
     render(){
         return (<div>
-             {this.props.isTestMark} <NavLink to="/examming" >
+             {/* {this.props.isTestMark} <NavLink to="/examming" >
                 examming
-            </NavLink>
+            </NavLink> */}
+           {this.state.subject.map((el,id) => {
+               return (<Button key={el.name} onClick={() => this.clickHandler(el.path)}>{el.name}</Button>)
+           })}
+
         </div>
           
         )
@@ -52,7 +73,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchUser : (userId) => dispatch(fetchUser(userId)),
-        changeIncommingPath : (path) => dispatch(changeIncommingPath(path))
+        changeIncommingPath : (path) => dispatch(changeIncommingPath(path)),
+        select : (subject) => dispatch({type : actionTypes.SELECT_SUBJECT, path : subject })
     }
 }
 

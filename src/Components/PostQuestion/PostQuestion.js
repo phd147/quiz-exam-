@@ -10,7 +10,14 @@ import {TextField,Button} from '@material-ui/core';
 import axios from 'axios';
 
 
+// classes CSS Modules 
+import classes from './PostQuestion.module.css';
+
+
 class PostQuestion extends React.Component {
+
+
+
 
 
     constructor(props){
@@ -21,6 +28,11 @@ class PostQuestion extends React.Component {
         this.b = React.createRef();
         this.c = React.createRef();
         this.d = React.createRef();
+
+
+        this.state = {
+            success : 'proccessing' 
+        }
     }
 
     submitHandler = () => {
@@ -37,23 +49,64 @@ class PostQuestion extends React.Component {
         };
         console.log(data);
 
-        axios.post('https://quiz-exam-bk.firebaseio.com/eng.json',data);
+        
+
+        
+            axios.post('https://quiz-exam-bk.firebaseio.com/cpA.json',data).then(data => {
+                this.setState({success : "okkkk"});
+                this.a.current.value = '';
+                this.b.current.value = '';
+                this.c.current.value = '';
+                this.d.current.value = '';
+                this.question.current.value = '';
+                this.correct.current.value = '';
+                setTimeout(() => {
+                    this.setState({success: "next"})
+                },2000)
+            }).catch(err => {
+                this.setState({success : "faillll"})
+            });
+        
+
+       
     }
 
 
     render(){
         return (
-            <React.Fragment>
-                 <h1>post question </h1>
-                <TextField inputRef={this.question} label="question"/>
-                <TextField inputRef={this.a} label="cau a"/>
-                <TextField inputRef={this.b} label="cau b"/>
-                <TextField inputRef={this.c} label="cau c"/>
-                <TextField inputRef={this.d} label="cau d"/>
-                <TextField inputRef={this.correct} label="correct answer"/>
-                <Button variant="contained" color="primary" onClick={this.submitHandler}>Submit</Button>
-            </React.Fragment>
-           
+           <div className={classes.container}>
+                 <h1 className={classes.child}>post question </h1>
+                <TextField style={{
+                    "margin" : "20px"
+                }}  multiline rows={5} inputRef={this.question} label="question"/>
+                <TextField  style={{
+                    "margin" : "20px"
+                }} inputRef={this.a} label="cau a"/>
+                <TextField  style={{
+                    "margin" : "20px"
+                }} className={classes.child}inputRef={this.b} label="cau b"/>
+                <TextField style={{
+                    "margin" : "20px"
+                }} inputRef={this.c} label="cau c"/>
+                <TextField style={{
+                    "margin" : "20px"
+                }}  inputRef={this.d} label="cau d"/>
+                <TextField style={{
+                    "margin" : "20px"
+                }}  inputRef={this.correct} label="correct answer"/>
+                <Button style={{
+                    "margin" : "20px"
+                }} variant="contained" color="primary" onClick={this.submitHandler}>Submit</Button>
+        <div style={{
+            "position": "fixed",
+            "top" : "30%",
+            "left" : "50%",
+            "width" : "200px",
+            "fontSize" : "40px",
+            "color" : "red"
+        }}>{this.state.success}</div>
+           </div>
+          
     
         )
     }
@@ -64,3 +117,6 @@ class PostQuestion extends React.Component {
 
 
 export default PostQuestion ;
+
+
+

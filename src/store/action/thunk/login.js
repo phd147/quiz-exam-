@@ -37,6 +37,9 @@ export const submitHandler = (mail,pass) => {
                     expireTime : res.data.expiresIn 
             });
           
+        }).catch(err => {
+            console.log(err);
+            dispatch({type : actionTypes.ERROR_LOGIN})
         });
     }
     
