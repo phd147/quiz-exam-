@@ -5,9 +5,12 @@ import {useSelector,useDispatch} from 'react-redux';
 
 import {useForm} from 'react-hook-form';
 
-import imgBk from '../../assets/image/Logo.png';
 
-import {connect} from 'react-redux'
+
+import {connect} from 'react-redux';
+
+// image 
+import bk from './Bkdn.jpg';
 
 
 
@@ -22,7 +25,7 @@ import {connect} from 'react-redux'
 
 import {submitHandler} from '../../store/action/thunk/login';
 
-import {Redirect} from 'react-router-dom';
+import {NavLink, Redirect} from 'react-router-dom';
 
 
 // material ui
@@ -36,8 +39,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -64,7 +66,7 @@ function Copyright() {
       height: '100vh',
     },
     image: {
-      backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/8/8a/Bkdn.jpg)',
+      backgroundImage: 'url(Bkdn.jpg)',
       backgroundRepeat: 'no-repeat',
       backgroundColor:
         theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -125,7 +127,11 @@ const Login = props =>  {
 
     useEffect(() => {
         console.log(errors);
-    },[errors])
+    },[errors]);
+
+
+   
+
 
 
     // useEffect(() => {
@@ -170,7 +176,7 @@ const Login = props =>  {
             <Button variant="contained" color="primary" onClick={handleSubmit(onSubmit)}>Submit</Button> */}
              <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} ><img style={{"width":"100%","height":"100%"}} alt="dut" src={bk}/></Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -221,6 +227,14 @@ const Login = props =>  {
             >
               Sign In
             </Button>
+            <Grid container justify="flex-end">
+            <Grid item>
+                <NavLink to="/signup">
+                  {"Don't have an account? Sign Up"}
+                </NavLink>
+              </Grid>
+          </Grid>
+
             <Grid container>
             {props.errorLogin ? <Alert style={{"width" : "100%"}} severity="error">
                     <AlertTitle>Error</AlertTitle>

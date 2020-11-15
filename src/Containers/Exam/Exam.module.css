@@ -1,16 +1,18 @@
-
-.result {
-    position : fixed;
+.exam {
+    position: fixed;
     width : 100%;
     height : 100%;
     display : flex ;
     justify-content: center;
     align-items: center;
-    background-color: #a29bfe;
-
+    
 }
 
 .parent {
-    padding : 20px; 
-    background-color: #ffeaa7;
+    padding : 20px;
+    display : flex ;
+    flex-direction: column;
 }
+
+
+

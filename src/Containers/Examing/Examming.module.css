@@ -8,6 +8,9 @@ body,html {
 
 .question {
     margin-bottom : 10px;
+    border : 2px solid #3498db;
+    border-radius : 10px;
+    padding : 10px; 
 }
 
 .inputEl {
@@ -28,6 +31,7 @@ body,html {
 
 .formAnswer {
     width : 100%;
+    
 }
 
 .title {
@@ -53,6 +57,7 @@ body,html {
 .container{
     padding : 0 ;
     background-color: #4D90FE;
+    
 }
 
 .buttonParent {
@@ -63,5 +68,11 @@ body,html {
 }
 
 .questions {
-    margin-top : 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridQuestion {
+    margin-top : 10px;
 }

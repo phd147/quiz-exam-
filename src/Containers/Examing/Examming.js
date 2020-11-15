@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 import {fetchQuestion,changeHandler,submitHandler} from '../../store/action/thunk/examming';
 
 
+// react router 
+import {Redirect} from 'react-router-dom'
 
 
 import Counter from '../../Components/Counter/Counter';
@@ -14,7 +16,7 @@ import Counter from '../../Components/Counter/Counter';
 import classes from './Examming.module.css';
 
 // material - ui GRID 
-import {Grid,Container,Button} from '@material-ui/core';
+import {Grid,Button} from '@material-ui/core';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -35,6 +37,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
+
 class Examming extends React.Component {
 
 
@@ -47,7 +50,7 @@ class Examming extends React.Component {
         this.props.fetchQuestion(this.props.subject);
 
         setTimeout(() => {
-            this.props.submit(this.props.questionArr);
+            this.props.submit(this.props.questionArr,this.props.subject,this.props.userId);
         },40*60*1000);
 
         
@@ -71,7 +74,7 @@ class Examming extends React.Component {
         this.setState({
             open : false 
         });
-        this.props.submit(this.props.questionArr);
+        this.props.submit(this.props.questionArr,this.props.subject,this.props.userId);
 
     }
 
@@ -153,11 +156,11 @@ and (23) _________, so that they will give you the authority to do what you want
                             
                             
                            
-                         <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}>A. </span> <FormControlLabel value="A" control={<Radio />} label={el.answer['A']} /></div>
+                         <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}> </span> <FormControlLabel value="A" control={<Radio />} label={` A. ${el.answer['A']}`} /></div>
                          
-                         <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}>B. </span><FormControlLabel value="B" control={<Radio />} label={el.answer['B']} /></div> 
-                         <div className={classes.inputEl}><span style={{"fontWeight" : "bold"}}>C. </span><FormControlLabel value="C" control={<Radio />} label={el.answer['C']} /></div> 
-                         <div className={classes.inputEl}><span style={{"fontWeight" : "bold"}}>D. </span><FormControlLabel value="D" control={<Radio />} label={el.answer['D']} /></div> 
+                         <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}> </span><FormControlLabel value="B" control={<Radio />} label={` B. ${el.answer['B']}`} /></div> 
+                         <div className={classes.inputEl}><span style={{"fontWeight" : "bold"}}> </span><FormControlLabel value="C" control={<Radio />} label={` C. ${el.answer['C']}`} /></div> 
+                         <div className={classes.inputEl}><span style={{"fontWeight" : "bold"}}> </span><FormControlLabel value="D" control={<Radio />} label={` D. ${el.answer['D']}`} /></div> 
                          
                         </RadioGroup>
                       </FormControl>
@@ -184,6 +187,9 @@ and (23) _________, so that they will give you the authority to do what you want
                 "margin" : "0",
                 "padding" : "0"
 }}>
+
+    {this.props.done ? <Redirect to="/result"/> : null}
+
     <Counter timeOutCmp={<h1>Time out</h1>} time={40*60*1000}/>
        
 
@@ -200,9 +206,9 @@ and (23) _________, so that they will give you the authority to do what you want
      </Grid>
     
 
-        <Grid container >
+        <Grid container className={classes.gridQuestion} >
             <Grid item xs={12} md={2}></Grid>
-            <Grid item xs={12} md={8} classes={this.props.questionArr.length===0 ? classes.content : classes.questions}>{content}</Grid>
+            <Grid item xs={12} md={8} className={this.props.questionArr.length === 0 ? classes.questions : null} >{content}</Grid>
             <Grid item xs={12} md={2}></Grid>
 
         </Grid>
@@ -247,7 +253,9 @@ const mapStateToProps = state => {
     return {
         questionArr : state.examming.questionArr,
         loading : state.examming.loading ,
-        subject : state.examming.subject 
+        subject : state.examming.subject ,
+        userId : state.auth.userId,
+        done : state.examming.done 
     }
 }
 
@@ -256,7 +264,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchQuestion : (subject) => dispatch(fetchQuestion(subject)),
         onChangeHandler : (key,value) => dispatch(changeHandler(key,value)),
-        submit : (answerArr) => dispatch(submitHandler(answerArr))
+        submit : (answerArr,subject,userId) => dispatch(submitHandler(answerArr,subject,userId))
     }
 }
 

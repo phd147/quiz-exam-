@@ -24,3 +24,13 @@ export const SELECT_SUBJECT = 'SELECT_SUBJECT';
 
 
 export const ERROR_LOGIN = 'ERROR_LOGIN';
+
+export const DONE_EXAMMING = 'DONE_EXAMMING';
+
+export const SET_EXAM_MATH = 'SET_EXAM_MATH';
+
+
+export const FETCH_CORRECT = 'FETCH_CORRECT';
+
+
+export const GET_USER_ID_KEY = 'GET_USER_ID_KEY';

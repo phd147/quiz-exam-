@@ -4,9 +4,9 @@ import * as actionTypes from '../action/actionTypes';
 
 
 const initialState = {
-    isTestMark : false ,
+    isTestCPA : false ,
     isTestEng : false ,
-    mathMark : null ,
+    cpa : null ,
     engMark : null 
 
 }
@@ -20,7 +20,7 @@ const reducer = (state= initialState, action) => {
                 ...state ,
                ...action.obj
             }
-
+       
 
 
         default : 

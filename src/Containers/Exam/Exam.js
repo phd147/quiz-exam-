@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import {NavLink} from 'react-router-dom';
+
 
 // redux 
 import {connect} from 'react-redux';
@@ -12,10 +12,12 @@ import {fetchUser} from '../../store/action/thunk/exam';
 import {changeIncommingPath} from '../../store/action/thunk/route';
 
 // material ui 
-import {Button} from '@material-ui/core';
+import {Button,Paper} from '@material-ui/core';
 
 
 import * as actionTypes from '../../store/action/actionTypes';
+
+import classes from './Exam.module.css';
 
 
 class Exam extends React.Component {
@@ -31,14 +33,17 @@ class Exam extends React.Component {
     }
 
     render(){
-        return (<div>
+        return (<div className={classes.exam}>
              {/* {this.props.isTestMark} <NavLink to="/examming" >
                 examming
             </NavLink> */}
-           {this.state.subject.map((el,id) => {
-               return (<Button key={el.name} onClick={() => this.clickHandler(el.path)}>{el.name}</Button>)
-           })}
+            <Paper elevation={3} className={classes.parent}>
 
+           
+           {this.state.subject.map((el,id) => {
+               return (<Button style={{"display":"block","margin":"10px"}} variant="contained" color="secondary" key={el.name} onClick={() => this.clickHandler(el.path)}>{el.name}</Button>)
+           })}
+             </Paper>
         </div>
           
         )
@@ -56,8 +61,6 @@ class Exam extends React.Component {
         this.props.history.push('/initAuth')
         
     }
-
-
 
 }
 

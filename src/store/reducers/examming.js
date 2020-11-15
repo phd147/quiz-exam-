@@ -5,7 +5,8 @@ const initialState = {
     questionArr : [] ,
    
     loading : false ,
-    subject : null 
+    subject : null ,
+    done : false 
     
 };
 
@@ -44,6 +45,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, 
                 subject : action.path
+            }
+
+        case(actionTypes.DONE_EXAMMING)  : 
+            return {
+                ...state, 
+                done : true 
             }
 
         default : 

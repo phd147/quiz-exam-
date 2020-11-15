@@ -26,13 +26,13 @@ class InitAuth extends React.Component {
                 this.props.clearToken();
             },expireTime - new Date().getTime());
 
-            this.props.history.push(`/${this.props.incomingPath}`)
+           this.props.incomingPath === null ? this.props.history.push('/student') :  this.props.history.push(`/${this.props.incomingPath}`)
 
             return ;
 
         }
 
-        this.props.history.push('/login')
+        this.props.history.push('/')
 
         
     }

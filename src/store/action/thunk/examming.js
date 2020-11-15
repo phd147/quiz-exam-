@@ -14,7 +14,6 @@ const shuffleArr = arr => {
 
 
 
-
 export const fetchQuestion = (subject) => {
     return async dispatch => {
         console.log("subject" + subject);
@@ -83,6 +82,9 @@ export const changeHandler = (key,value) => {
 
 export const submitHandler = (answers,subject,userId) => {
     return async dispatch => {
+
+        console.log(answers,subject,userId);
+
         answers = answers.filter((el,id,els) => {
             return el.correct === el.userAnswer 
         });
@@ -91,10 +93,40 @@ export const submitHandler = (answers,subject,userId) => {
             type : actionTypes.SUBMIT,
             correctAnswers : answers.length
         });
-        const userIdKey = await  axios.get('https://quiz-exam-bk.firebaseio.com/user.json');
-        axios.put(`https://quiz-exam-bk.firebaseio.com/user/${userIdKey}.json`, {
-            [subject] : answers.length
+        const userObj= await  axios.get(`https://quiz-exam-bk.firebaseio.com/user.json?orderBy="userId"&equalTo="${userId}"`);
+
+        console.log(userObj)
+
+        let keyUser = null ;
+
+
+        for(let key in userObj.data ){
+            keyUser = key ;
+        }
+        console.log(keyUser)
+
+         await axios.patch(`https://quiz-exam-bk.firebaseio.com/user/${keyUser}.json`,{
+           [subject] : answers.length
         });
+
+        dispatch({type : actionTypes.SET_EXAM_MATH,key : answers.length, subject : subject})
+
+        dispatch({type : actionTypes.DONE_EXAMMING});
+        
+
+
+        
+    
+
+        
+
+        
+
+
+        // console.log(userIdKey);
+        // axios.put(`https://quiz-exam-bk.firebaseio.com/user/${userIdKey}.json`, {
+        //     [subject] : answers.length
+        // });
     }
 };
 

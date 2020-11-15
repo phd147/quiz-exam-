@@ -26,10 +26,6 @@ export const fetchUser = (userId) => {
 
         } catch (error) {
             console.log(error);
-        }
-
-
-        
-        
+        } 
     }
 }

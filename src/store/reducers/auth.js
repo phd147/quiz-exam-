@@ -7,7 +7,9 @@ const initialState = {
     userId : null ,
     tokenId : null ,
     expireTime : null ,
-    error : false 
+    error : false ,
+    endPointUser : null,
+    userIdKey : null  
 }
 
 
@@ -39,6 +41,11 @@ const reducer  = (state = initialState, action) => {
             return {
                 ...state, 
                 error : true 
+            }
+        case(actionTypes.GET_USER_ID_KEY) : 
+            return {
+                ...state, 
+                userIdKey : action.userIdKey
             }
 
         default : 
