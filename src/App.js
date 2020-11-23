@@ -3,6 +3,9 @@ import {Route,Switch} from 'react-router-dom';
 
 
 // route 
+
+import Infor from '../src/Containers/Infor/Infor';
+
 import Counter from './Components/Counter/Counter';
 import Login from './Containers/Login/login1';
 
@@ -57,6 +60,7 @@ class App extends React.Component {
                     <Route path="/logout" component={Logout}/>
 
                     <Route path="/nivo" component={TestNivo}/>
+                    <Route path="/infor" component={Infor}/>
 
                 </Switch>
 

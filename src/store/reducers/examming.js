@@ -6,7 +6,8 @@ const initialState = {
    
     loading : false ,
     subject : null ,
-    done : false 
+    done : true ,
+    mark : 'Loading'
     
 };
 
@@ -17,7 +18,8 @@ const reducer = (state = initialState, action) => {
         case (actionTypes.FETCH_QUESTION_SUCCESS) :
             return {
                 ...state, 
-                questionArr : action.questionArr
+                questionArr : action.questionArr,
+                loading : false
             }
 
         case (actionTypes.CHANGE_HANDLER) : 
@@ -37,7 +39,10 @@ const reducer = (state = initialState, action) => {
         case (actionTypes.SUBMIT) : 
             return {
                 ...state , 
-                math : action.correctAnswers
+                mark : action.correctAnswers,
+                done : true ,
+                questionArr : []
+               
             }
         
 
@@ -47,10 +52,31 @@ const reducer = (state = initialState, action) => {
                 subject : action.path
             }
 
-        case(actionTypes.DONE_EXAMMING)  : 
+      
+       
+
+        case(actionTypes.DELETE_SUBJECT_STATE) :
             return {
                 ...state, 
-                done : true 
+                subject : null,
+                
+            }
+        case(actionTypes.FETCH_QUESTION_LOADING) : 
+            return {
+                ...state, 
+                loading : true
+            }
+
+        case(actionTypes.RESULT_UNMOUNT_DELETE_SUBJECT_DONE):
+            return {
+                ...state, 
+                done : false ,
+                subject : null
+            }
+        case('DELETE_ARR_QUESTION') : 
+            return {
+                ...state, 
+                questionArr : []
             }
 
         default : 

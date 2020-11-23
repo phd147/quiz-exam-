@@ -17,26 +17,13 @@ const shuffleArr = arr => {
 export const fetchQuestion = (subject) => {
     return async dispatch => {
         console.log("subject" + subject);
+        dispatch({type : actionTypes.FETCH_QUESTION_LOADING })
         const res = await axios.get(`https://quiz-exam-bk.firebaseio.com/${subject}.json`);
         const data = res.data ;
        
         let questionArr = [] ;
 
-        if(subject ==='eng'){
-            for(let key in data){
-                questionArr.push(
-                    {
-                       ...data[key],
-                       id : key ,
-                       userAnswer : ''
-                    }
-                )
-            };
-        }
-
-
-        // subject === 'cpa '
-        else {
+      
             for(let key in data){
                 questionArr.push({
                     ...data[key],
@@ -47,12 +34,12 @@ export const fetchQuestion = (subject) => {
             shuffleArr(questionArr);
             console.log(questionArr);
             questionArr = questionArr.slice(1,31);
-        }
+        
 
        
 
 
-        
+            
 
 
         
@@ -80,38 +67,33 @@ export const changeHandler = (key,value) => {
 }
 
 
-export const submitHandler = (answers,subject,userId) => {
+export const submitHandler = (answers,subject,keyUser) => {
     return async dispatch => {
 
-        console.log(answers,subject,userId);
+       
 
-        answers = answers.filter((el,id,els) => {
+        answers = answers.filter((el) => {
             return el.correct === el.userAnswer 
         });
         console.log(answers.length);
+       
+       
+
+         await axios.patch(`https://quiz-exam-bk.firebaseio.com/user/${keyUser}/subject/${subject}.json`,{
+           mark :  ((answers.length / 30)*10).toString().indexOf('.') !== -1 ? ((answers.length / 30)*10).toFixed(1) : ((answers.length / 30)*10)
+        });
+
         dispatch({
             type : actionTypes.SUBMIT,
             correctAnswers : answers.length
         });
-        const userObj= await  axios.get(`https://quiz-exam-bk.firebaseio.com/user.json?orderBy="userId"&equalTo="${userId}"`);
 
-        console.log(userObj)
+        
+       
 
-        let keyUser = null ;
+   
 
-
-        for(let key in userObj.data ){
-            keyUser = key ;
-        }
-        console.log(keyUser)
-
-         await axios.patch(`https://quiz-exam-bk.firebaseio.com/user/${keyUser}.json`,{
-           [subject] : answers.length
-        });
-
-        dispatch({type : actionTypes.SET_EXAM_MATH,key : answers.length, subject : subject})
-
-        dispatch({type : actionTypes.DONE_EXAMMING});
+        
         
 
 

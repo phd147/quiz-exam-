@@ -52,7 +52,7 @@ class PostQuestion extends React.Component {
         
 
         
-            axios.post('https://quiz-exam-bk.firebaseio.com/cpA.json',data).then(data => {
+            axios.post('https://quiz-exam-bk.firebaseio.com/eng.json',data).then(data => {
                 this.setState({success : "okkkk"});
                 this.a.current.value = '';
                 this.b.current.value = '';

@@ -8,7 +8,7 @@ const initialState = {
     tokenId : null ,
     expireTime : null ,
     error : false ,
-    endPointUser : null,
+   
     userIdKey : null  
 }
 

@@ -40,27 +40,25 @@ class Student extends React.Component {
 
                 <Paper elevation={3} className={classes.parent}>
 
-                <Button  style={{"display":"block","margin":"10px"}}  variant="contained" color="primary">
-                <NavLink style={{"textDecoration" : "none", "color": "orange"}} to="/infor" exact activeStyle={{
+                <NavLink style={{"textDecoration" : "none", "color": "orange","display":"block","margin":"10px"}} to="/infor" exact activeStyle={{
                     color : "orange",
                     border: "2px solid orange"
-                }}>
-                    Infor
-                </NavLink></Button>
-                <Button style={{"display":"block","margin":"10px"}}  variant="contained" color="primary">
-                <NavLink style={{"textDecoration" : "none", "color": "orange"}} to="/exam" exact activeStyle={{
+                }}><Button style={{"width":"100%"}}  variant="contained" color="primary">
+                    Infor</Button>
+                </NavLink>
+                
+                <NavLink style={{"textDecoration" : "none", "color": "orange","display":"block","margin":"10px"}} to="/exam" exact activeStyle={{
                     color : "orange",
                     border: "2px solid orange"
-                }}>
-                    Exam
-                </NavLink></Button>
-                <Button style={{"display":"block","margin":"10px"}}  variant="contained" color="primary">
-                <NavLink style={{"textDecoration" : "none", "color": "orange"}} to="/logout" exact activeStyle={{
+                }}><Button style={{"width":"100%"}}  variant="contained" color="primary">
+                    Exam</Button>
+                </NavLink>
+                <NavLink style={{"textDecoration" : "none", "color": "orange","display":"block","margin":"10px"}} to="/logout" exact activeStyle={{
                     color : "orange",
                     border: "2px solid orange"
-                }}>
-                    Logout
-                </NavLink></Button>
+                }}><Button style={{"width":"100%"}}  variant="contained" color="primary">
+                    Logout</Button>
+                </NavLink>
                
 
                 </Paper>
@@ -86,3 +84,25 @@ const mapDispathToProps = dispatch => {
 
 
 export default connect(mapStateToProps,mapDispathToProps)(Student); 
+
+
+
+// const subject = {
+//     eng : {
+//         isTest : true ,
+//         mark : 10 ,
+//         label : "English" ,
+        
+
+//     },
+//     cpA : {
+//         isTest : false ,
+//         mark : 0 ,
+//         label : "Computer Architecture"
+//     } ,
+//     java : {
+//         isTest : true ,
+//         mark : 10 ,
+//         label : "Java Programming"
+//     }
+// }

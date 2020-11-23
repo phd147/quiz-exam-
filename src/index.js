@@ -16,6 +16,7 @@ import Authreducer from '../src/store/reducers/auth';
 import exammingReducer from '../src/store/reducers/examming';
 import route from '../src/store/reducers/route';
 import examReducer from '../src/store/reducers/exam';
+import signUpReducer from '../src/store/reducers/signup';
 
 import thunk from 'redux-thunk';
 
@@ -24,7 +25,8 @@ const reducer = combineReducers({
    examming : exammingReducer,
    auth : Authreducer,
    exam : examReducer,
-   route : route
+   route : route,
+   signUp : signUpReducer
 });
 
 

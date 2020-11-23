@@ -13,4 +13,17 @@
 .parent {
     padding : 20px; 
     background-color: #ffeaa7;
+    display : flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
+
+.parent > * {
+    margin : 15px;
+}
+
+
+
+
