@@ -21,6 +21,9 @@ import * as actionTypes from '../../store/action/actionTypes';
 
 import classes from './Exam.module.css';
 
+// back button 
+import BackButton from '../../Components/BackButton/BackButton';
+
 
 class Exam extends React.Component {
 
@@ -28,8 +31,8 @@ class Exam extends React.Component {
         subject : []
     }
 
-    clickHandler = (path,userIdKey)  => {
-        this.props.select(path);
+    clickHandler = (fullname, path,userIdKey)  => {
+        this.props.select(fullname,path);
         
         this.props.history.push('/examming');
         axios.patch(`https://quiz-exam-bk.firebaseio.com/user/${userIdKey}/subject/${path}.json`,{
@@ -39,10 +42,13 @@ class Exam extends React.Component {
 
     render(){
         return (<div className={classes.exam}>
+            
+           
              {/* {this.props.isTestMark} <NavLink to="/examming" >
                 examming
             </NavLink> */}
             <Paper elevation={3} className={classes.parent}>
+            <BackButton path="/student"/>
             {this.state.subject.length === 0 ? <React.Fragment>
                 <Skeleton style={{"margin" : "10px"}} variant="rect" width={210} height={30} />
                 <Skeleton style={{"margin" : "10px"}} variant="rect" width={210} height={30} />
@@ -50,7 +56,7 @@ class Exam extends React.Component {
             </React.Fragment> : null }
            
            {this.state.subject.map((el,id) => {
-               return (<Button disabled={el.isTest} style={{"display":"block","margin":"10px"}} variant="contained" color="secondary" key={el.fullname} onClick={() => this.clickHandler(el.id,this.props.userIdKey)}>{el.fullname}</Button>)
+               return (<Button disabled={el.isTest} style={{"display":"block","margin":"10px", "width":"100%"}} variant="contained" color="secondary" key={el.fullname} onClick={() => this.clickHandler(el.fullname, el.id,this.props.userIdKey)}>{el.fullname}</Button>)
            })}
              </Paper>
         </div>
@@ -106,7 +112,7 @@ const mapDispatchToProps = dispatch => {
     return {
         
         changeIncommingPath : (path) => dispatch(changeIncommingPath(path)),
-        select : (subject) => dispatch({type : actionTypes.SELECT_SUBJECT, path : subject })
+        select : (fullname,subject) => dispatch({type : actionTypes.SELECT_SUBJECT, path : subject ,fullname : fullname})
     }
 }
 

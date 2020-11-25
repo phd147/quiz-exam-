@@ -4,10 +4,8 @@ import * as actionTypes from '../action/actionTypes';
 
 
 const initialState = {
-    isTestCPA : false ,
-    isTestEng : false ,
-    cpa : null ,
-    engMark : null 
+   fullname : null ,
+   path : null 
 
 }
 

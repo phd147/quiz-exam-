@@ -7,7 +7,8 @@ export const initAuth = () => {
             type : actionTypes.LOGIN_SUCCESS,
             userId : localStorage.getItem('userId'),
             expireTime : localStorage.getItem('expireTime'),
-            tokenId : localStorage.getItem('tokenId')
+            tokenId : localStorage.getItem('tokenId'),
+            userIdKey : localStorage.getItem('userIdKey')
         })
     }
 }

@@ -20,13 +20,15 @@ const reducer  = (state = initialState, action) => {
                 ...state, 
                 tokenId : action.tokenId , 
                 userId : action.userId ,
-                expireTime : action.expireTime 
+                expireTime : action.expireTime ,
+                userIdKey : action.userIdKey
          }
 
          case(actionTypes.CLEAR_TOKEN) : 
             localStorage.removeItem('userId');
             localStorage.removeItem('tokenId');
             localStorage.removeItem('expireTime'); 
+            localStorage.removeItem('userIdKey');
 
 
             return {

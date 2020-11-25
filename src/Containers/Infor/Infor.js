@@ -8,6 +8,9 @@ import {useHistory} from 'react-router-dom';
 
 import classes from './Infor.module.css';
 
+//back button 
+import BackButton from '../../Components/BackButton/BackButton';
+
 // material ui 
 import {Paper,Grid,CircularProgress} from '@material-ui/core';
 
@@ -84,6 +87,7 @@ const Infor = props => {
 
     return (
         <div className={classes.Infor}>
+            <BackButton path="/student"/>
             <Grid container>
                 <Grid item xs={12} md={4}></Grid>
                 <Grid item xs={12} md={4}>

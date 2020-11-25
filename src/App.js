@@ -4,6 +4,8 @@ import {Route,Switch} from 'react-router-dom';
 
 // route 
 
+import NotFound from '../src/Components/NotFound/NotFound';
+
 import Infor from '../src/Containers/Infor/Infor';
 
 import Counter from './Components/Counter/Counter';
@@ -61,6 +63,7 @@ class App extends React.Component {
 
                     <Route path="/nivo" component={TestNivo}/>
                     <Route path="/infor" component={Infor}/>
+                    <Route path="/" component={NotFound}/>
 
                 </Switch>
 

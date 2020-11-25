@@ -29,7 +29,7 @@ class Student extends React.Component {
             return ;
         };
         // lay user Id Key cua user do roi cho vao global store cua redux 
-        this.props.getUserIdKey(this.props.userId);
+        // this.props.getUserIdKey(this.props.userId);
         
     }
    

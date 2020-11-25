@@ -7,7 +7,8 @@ const initialState = {
     loading : false ,
     subject : null ,
     done : true ,
-    mark : 'Loading'
+    mark : 'Loading',
+    fullname : null
     
 };
 
@@ -49,7 +50,8 @@ const reducer = (state = initialState, action) => {
         case(actionTypes.SELECT_SUBJECT) : 
             return {
                 ...state, 
-                subject : action.path
+                subject : action.path,
+                fullname : action.fullname
             }
 
       
@@ -71,7 +73,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, 
                 done : false ,
-                subject : null
+                subject : null,
+                mark : 'LOADING'
             }
         case('DELETE_ARR_QUESTION') : 
             return {

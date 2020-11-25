@@ -148,7 +148,7 @@ class Examming extends React.Component {
         <Grid item xs={12} md={4}></Grid>
         <Grid item xs={12} md={4} className={classes.title}>
                 <h2>Bài thi trắc nghiệm </h2>
-                <h3>Môn : {this.props.subject === 'eng'  ? "English" : "Computer Architecture"}</h3>
+                <h3>Môn : {this.props.fullname}</h3>
                 <h3>Thời gian : 40 phút</h3>
         </Grid>
 
@@ -209,7 +209,8 @@ const mapStateToProps = state => {
         subject : state.examming.subject ,
         userId : state.auth.userId,
         done : state.examming.done ,
-        userIdKey : state.auth.userIdKey 
+        userIdKey : state.auth.userIdKey ,
+        fullname : state.examming.fullname
     }
 }
 
