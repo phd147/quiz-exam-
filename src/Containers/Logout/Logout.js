@@ -16,7 +16,7 @@ const Logout = props => {
 
 
     return (<div>
-       <h1>logout ne hihi</h1>
+     
          
     </div>
 

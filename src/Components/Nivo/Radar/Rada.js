@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {ResponsiveRadar} from '@nivo/radar';
+import {ResponsiveRadar } from '@nivo/radar';
 
 
 
 const MyResponsiveRadar = ({ data /* see data tab */ }) => (
     <ResponsiveRadar
         data={data}
-        keys={[ 'chardonay', 'carmenere', 'syrah','phd' ]}
+        keys={[ 'chardonay', 'carmenere', 'syrah' ]}
         indexBy="taste"
         maxValue="auto"
       
@@ -26,7 +26,7 @@ const MyResponsiveRadar = ({ data /* see data tab */ }) => (
         enableDotLabel={true}
         dotLabel="value"
         dotLabelYOffset={-12}
-        colors={{ scheme: 'category10' }}
+        colors={{ scheme: 'nivo' }}
         fillOpacity={0.5}
         blendMode="multiply"
         animate={true}
