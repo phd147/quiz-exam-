@@ -7,7 +7,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 
 //action 
-import {fetchUser} from '../../store/action/thunk/exam';
+// import {fetchUser} from '../../store/action/thunk/exam';
 
 import {changeIncommingPath} from '../../store/action/thunk/route';
 

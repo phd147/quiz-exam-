@@ -32,6 +32,8 @@ class InitAuth extends React.Component {
 
         }
 
+        
+        this.props.setInit();
         this.props.history.push('/')
 
         
@@ -54,7 +56,8 @@ const mapDispatchToProps = dispatch => {
 
     return {
         initAuth : () => dispatch(initAuth()),
-        clearToken : () => dispatch({type : actionTypes.CLEAR_TOKEN})
+        clearToken : () => dispatch({type : actionTypes.CLEAR_TOKEN}),
+        setInit : () => dispatch({type : 'SET_INIT'})
     }
 
 }

@@ -9,7 +9,8 @@ const initialState = {
     expireTime : null ,
     error : false ,
    
-    userIdKey : null  
+    userIdKey : null  ,
+    isInit : false
 }
 
 
@@ -48,6 +49,12 @@ const reducer  = (state = initialState, action) => {
             return {
                 ...state, 
                 userIdKey : action.userIdKey
+            }
+
+        case ('SET_INIT') : 
+            return {
+                ...state, 
+                isInit : true 
             }
 
         default : 

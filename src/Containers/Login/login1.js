@@ -5,6 +5,8 @@ import {useSelector,useDispatch} from 'react-redux';
 
 import {useForm} from 'react-hook-form';
 
+import {useHistory} from 'react-router-dom'
+
 
 
 import {connect} from 'react-redux';
@@ -108,7 +110,7 @@ const Login = props =>  {
     
     
 
-    // const history = useHistory();
+    const history = useHistory();
 
     const {register,errors,handleSubmit} = useForm();
     const onSubmit = data => {
@@ -142,6 +144,13 @@ const Login = props =>  {
     //     }
     //     console.log(incomingPath);
     // },[]);
+
+    useEffect(() => {
+        if(!props.isInit && !props.auth){
+          history.push('/initAuth');
+        }
+    },[history]);
+
     
     
         return (<div>
@@ -258,7 +267,8 @@ const Login = props =>  {
 
 const mapStateToProps = state => {
     return {
-      errorLogin : state.auth.error
+      errorLogin : state.auth.error,
+      isInit : state.auth.isInit
     }
 }
 

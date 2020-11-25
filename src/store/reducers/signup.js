@@ -1,18 +1,18 @@
-import * as acionTypes from '../action/actionTypes';
+// // import * as acionTypes from '../action/actionTypes';
 
-const initialState = {
-    signUpSuccess : false
-}
+// const initialState = {
+//     signUpSuccess : false
+// }
 
 
-const reducer = (state = initialState,action) => {
+// const reducer = (state = initialState,action) => {
 
    
-        return state ;
+//         return state ;
 
 
-};
+// };
 
 
 
-export default reducer ;
+// export default reducer ;

@@ -12,7 +12,7 @@ import classes from './Infor.module.css';
 import BackButton from '../../Components/BackButton/BackButton';
 
 // material ui 
-import {Paper,Grid,CircularProgress} from '@material-ui/core';
+import {Paper,Grid,CircularProgress,Container} from '@material-ui/core';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,10 +21,56 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+
+// radar nivo component 
+import Radar from '../../Components/Nivo/Radar/Rada';
+
 // axios 
 import axios from 'axios';
 
 const createData = (stt,name,status,mark) => ({stt,name,status,mark});
+
+
+const data = [
+    {
+      "taste": "fruity",
+      "chardonay": 28,
+      "carmenere": 67,
+      "syrah": 61,
+      'phd':99
+    },
+    {
+      "taste": "bitter",
+      "chardonay": 66,
+      "carmenere": 60,
+      "syrah": 61,
+      'phd':99
+    },
+    {
+      "taste": "heavy",
+      "chardonay": 81,
+      "carmenere": 104,
+      "syrah": 105,
+      'phd':99
+    },
+    {
+      "taste": "strong",
+      "chardonay": 75,
+      "carmenere": 60,
+      "syrah": 88,
+      'phd':99
+    },
+    {
+      "taste": "sunny",
+      "chardonay": 45,
+      "carmenere": 118,
+      "syrah": 114,
+      'phd':99
+    }
+  ]
+
+
+
 
 
 
@@ -63,7 +109,7 @@ const Infor = props => {
         }
 
 
-    },[history,dispatch,auth]);
+    },[]);
 
     useEffect( () => {
         console.log('component did mount')
@@ -88,6 +134,9 @@ const Infor = props => {
     return (
         <div className={classes.Infor}>
             <BackButton path="/student"/>
+            <Container>
+
+            
             <Grid container>
                 <Grid item xs={12} md={4}></Grid>
                 <Grid item xs={12} md={4}>
@@ -122,9 +171,14 @@ const Infor = props => {
     </TableContainer> : null}
                     </Paper>
                 </Grid>
-                <Grid item xs={12} md={4}></Grid>
+                <Grid item xs={12} md={4}>
+                    {/* <Paper elevation={3} style={{"height":"400px"}}>
+                        <Radar data={data}/>
+                    </Paper> */}
 
+                </Grid>
             </Grid>
+            </Container>
         </div>
     )
 };
