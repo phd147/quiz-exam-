@@ -149,7 +149,7 @@ const Login = props =>  {
         if(!props.isInit && !props.auth){
           history.push('/initAuth');
         }
-    },[history]);
+    },[history,props.isInit,props.auth]);
 
     
     

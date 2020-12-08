@@ -4,6 +4,8 @@ import React, { useEffect,useState } from 'react';
 // props types 
 import PropTypes from 'prop-types';
 
+// vivooooooooooo
+import Radar from '../../Components/Nivo/Radar/Rada';
 
 
 
@@ -41,47 +43,50 @@ import Box from '@material-ui/core/Box';
 
 
 
-// radar nivo component 
-// import Radar from '../../Components/Nivo/Radar/Rada';
-// import Line from '../../Components/Nivo/Line/Line';
 
 // axios 
 import axios from 'axios';
 
 const createData = (stt,name,status,mark) => ({stt,name,status,mark});
 
-const data = [
-  {
-    "taste": "fruity",
-    "chardonay": 47,
-    "carmenere": 118,
-    "syrah": 61
-  },
-  {
-    "taste": "bitter",
-    "chardonay": 91,
-    "carmenere": 93,
-    "syrah": 51
-  },
-  {
-    "taste": "heavy",
-    "chardonay": 109,
-    "carmenere": 87,
-    "syrah": 65
-  },
-  {
-    "taste": "strong",
-    "chardonay": 51,
-    "carmenere": 68,
-    "syrah": 94
-  },
-  {
-    "taste": "sunny",
-    "chardonay": 57,
-    "carmenere": 88,
-    "syrah": 117
-  }
-]
+
+
+
+// const data = [
+//   {
+//     "taste": "fruity",
+//     "chardonay": 47,
+//     "carmenere": 118,
+//     "syrah": 61
+//   },
+//   {
+//     "taste": "bitter",
+//     "chardonay": 91,
+//     "carmenere": 93,
+//     "syrah": 51
+//   },
+//   {
+//     "taste": "heavy",
+//     "chardonay": 109,
+//     "carmenere": 87,
+//     "syrah": 65
+//   },
+//   {
+//     "taste": "strong",
+//     "chardonay": 51,
+//     "carmenere": 68,
+//     "syrah": 94
+//   },
+//   {
+//     "taste": "sunny",
+//     "chardonay": 57,
+//     "carmenere": 88,
+//     "syrah": 117
+//   }
+// ];
+
+
+// const subjects = ['chardonay','carmenere','syrah'];
 
 const useStyles = makeStyles({
   root: {
@@ -91,278 +96,6 @@ const useStyles = makeStyles({
 
 
 
-// const data = [
-//   {
-//     "id": "japan",
-//     "color": "hsl(279, 70%, 50%)",
-//     "data": [
-//       {
-//         "x": "plane",
-//         "y": 41
-//       },
-//       {
-//         "x": "helicopter",
-//         "y": 276
-//       },
-//       {
-//         "x": "boat",
-//         "y": 49
-//       },
-//       {
-//         "x": "train",
-//         "y": 243
-//       },
-//       {
-//         "x": "subway",
-//         "y": 39
-//       },
-//       {
-//         "x": "bus",
-//         "y": 249
-//       },
-//       {
-//         "x": "car",
-//         "y": 285
-//       },
-//       {
-//         "x": "moto",
-//         "y": 188
-//       },
-//       {
-//         "x": "bicycle",
-//         "y": 255
-//       },
-//       {
-//         "x": "horse",
-//         "y": 291
-//       },
-//       {
-//         "x": "skateboard",
-//         "y": 56
-//       },
-//       {
-//         "x": "others",
-//         "y": 218
-//       }
-//     ]
-//   },
-//   {
-//     "id": "france",
-//     "color": "hsl(181, 70%, 50%)",
-//     "data": [
-//       {
-//         "x": "plane",
-//         "y": 257
-//       },
-//       {
-//         "x": "helicopter",
-//         "y": 130
-//       },
-//       {
-//         "x": "boat",
-//         "y": 22
-//       },
-//       {
-//         "x": "train",
-//         "y": 71
-//       },
-//       {
-//         "x": "subway",
-//         "y": 123
-//       },
-//       {
-//         "x": "bus",
-//         "y": 194
-//       },
-//       {
-//         "x": "car",
-//         "y": 54
-//       },
-//       {
-//         "x": "moto",
-//         "y": 285
-//       },
-//       {
-//         "x": "bicycle",
-//         "y": 43
-//       },
-//       {
-//         "x": "horse",
-//         "y": 71
-//       },
-//       {
-//         "x": "skateboard",
-//         "y": 204
-//       },
-//       {
-//         "x": "others",
-//         "y": 280
-//       }
-//     ]
-//   },
-//   {
-//     "id": "us",
-//     "color": "hsl(121, 70%, 50%)",
-//     "data": [
-//       {
-//         "x": "plane",
-//         "y": 269
-//       },
-//       {
-//         "x": "helicopter",
-//         "y": 216
-//       },
-//       {
-//         "x": "boat",
-//         "y": 57
-//       },
-//       {
-//         "x": "train",
-//         "y": 10
-//       },
-//       {
-//         "x": "subway",
-//         "y": 276
-//       },
-//       {
-//         "x": "bus",
-//         "y": 17
-//       },
-//       {
-//         "x": "car",
-//         "y": 34
-//       },
-//       {
-//         "x": "moto",
-//         "y": 272
-//       },
-//       {
-//         "x": "bicycle",
-//         "y": 200
-//       },
-//       {
-//         "x": "horse",
-//         "y": 165
-//       },
-//       {
-//         "x": "skateboard",
-//         "y": 70
-//       },
-//       {
-//         "x": "others",
-//         "y": 2
-//       }
-//     ]
-//   },
-//   {
-//     "id": "germany",
-//     "color": "hsl(195, 70%, 50%)",
-//     "data": [
-//       {
-//         "x": "plane",
-//         "y": 287
-//       },
-//       {
-//         "x": "helicopter",
-//         "y": 59
-//       },
-//       {
-//         "x": "boat",
-//         "y": 201
-//       },
-//       {
-//         "x": "train",
-//         "y": 80
-//       },
-//       {
-//         "x": "subway",
-//         "y": 252
-//       },
-//       {
-//         "x": "bus",
-//         "y": 76
-//       },
-//       {
-//         "x": "car",
-//         "y": 38
-//       },
-//       {
-//         "x": "moto",
-//         "y": 11
-//       },
-//       {
-//         "x": "bicycle",
-//         "y": 175
-//       },
-//       {
-//         "x": "horse",
-//         "y": 148
-//       },
-//       {
-//         "x": "skateboard",
-//         "y": 98
-//       },
-//       {
-//         "x": "others",
-//         "y": 66
-//       }
-//     ]
-//   },
-//   {
-//     "id": "norway",
-//     "color": "hsl(145, 70%, 50%)",
-//     "data": [
-//       {
-//         "x": "plane",
-//         "y": 36
-//       },
-//       {
-//         "x": "helicopter",
-//         "y": 200
-//       },
-//       {
-//         "x": "boat",
-//         "y": 210
-//       },
-//       {
-//         "x": "train",
-//         "y": 197
-//       },
-//       {
-//         "x": "subway",
-//         "y": 241
-//       },
-//       {
-//         "x": "bus",
-//         "y": 165
-//       },
-//       {
-//         "x": "car",
-//         "y": 93
-//       },
-//       {
-//         "x": "moto",
-//         "y": 148
-//       },
-//       {
-//         "x": "bicycle",
-//         "y": 261
-//       },
-//       {
-//         "x": "horse",
-//         "y": 287
-//       },
-//       {
-//         "x": "skateboard",
-//         "y": 69
-//       },
-//       {
-//         "x": "others",
-//         "y": 194
-//       }
-//     ]
-//   }
-// ]
 
 // TAB PANEL 
 function TabPanel(props) {
@@ -406,11 +139,17 @@ function a11yProps(index) {
 const Infor = props => {
 
   const classesMaterialUI = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [data,setData] = useState([]);
+  const [subjects,setSubjects] = useState([]);
+   const maxValue = 10 ;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -443,27 +182,49 @@ const Infor = props => {
         if(!auth){
             dispatch({type : actionTypes.CHANGE_ROUTE, path: 'infor' });
             history.push('/initAuth');
+            return ;
         }
 
-
-    },[]);
-
-    useEffect( () => {
-        console.log('component did mount')
-       axios.get(`https://quiz-exam-bk.firebaseio.com/user/${userIdKey}/subject.json`)
+        axios.get(`https://quiz-exam-bk.firebaseio.com/user/${userIdKey}/subject.json`)
         .then(data => {
             const subjectState = [] ;
+            const dataOfVisualization = [];
+            const subjectList = [];
             for(let key in data.data){
                 subjectState.push({
                     id : key ,
                     isTest : data.data[key].isTest ,
                     mark : data.data[key].mark,
                     fullname : data.data[key].fullname
-                })
+                });
+                dataOfVisualization.push({
+                  "taste": data.data[key].fullname,
+                  "you" : data.data[key].mark
+                });
+                subjectList.push(data.data[key].fullname)
             };
-            setListSubject(subjectState)
+            setListSubject(subjectState);
+            setData(dataOfVisualization);
+            setSubjects(['you']);
+            
+            
+
 
         })
+
+    },[userIdKey]);
+
+
+    
+
+
+
+
+    useEffect( () => {
+
+      
+        console.log('component did mount')
+      
        
     },[userIdKey]);
 
@@ -522,12 +283,14 @@ const Infor = props => {
         </Paper>
 </TabPanel>
 <TabPanel value={value} index={1}>
-Item Two
-</TabPanel>
+  <Paper elevation={3} style={{"height":"400px"}}>
+  <Radar data={data} subjects={subjects} maxValue={maxValue}/>
+  </Paper>
+</TabPanel> 
 
   </Grid>
   <Grid item xs={12} md={2}>
-
+  
     </Grid>
 </Grid>
 </Container>

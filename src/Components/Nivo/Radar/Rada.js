@@ -4,19 +4,19 @@ import {ResponsiveRadar } from '@nivo/radar';
 
 
 
-const MyResponsiveRadar = ({ data /* see data tab */ }) => (
+const MyResponsiveRadar = ({ data /* see data tab */ ,subjects,maxValue}) => (
     <ResponsiveRadar
         data={data}
-        keys={[ 'chardonay', 'carmenere', 'syrah' ]}
+        keys={subjects}
         indexBy="taste"
-        maxValue="auto"
+        maxValue={maxValue}
       
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         curve="linearClosed"
         borderWidth={2}
         borderColor={{ from: 'color' }}
         gridLevels={5}
-        gridShape="linear"
+        gridShape="circular"
         gridLabelOffset={36}
         enableDots={true}
         dotSize={10}
