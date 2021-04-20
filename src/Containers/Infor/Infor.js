@@ -206,13 +206,10 @@ const Infor = props => {
             setListSubject(subjectState);
             setData(dataOfVisualization);
             setSubjects(['you']);
-            
-            
-
-
+          
         })
 
-    },[userIdKey]);
+    },[userIdKey,auth,dispatch,history]);
 
 
     

@@ -101,7 +101,7 @@ class Examming extends React.Component {
                             
                             
                            
-                         <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}> </span> <FormControlLabel value="A" control={<Radio />} label={` A. ${el.answer['A']}`} /></div>
+                         <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}>{this.state.hello}</span> <FormControlLabel value="A" control={<Radio />} label={` A. ${el.answer['A']}`} /></div>
                          
                          <div className={classes.inputEl}> <span style={{"fontWeight" : "bold"}}> </span><FormControlLabel value="B" control={<Radio />} label={` B. ${el.answer['B']}`} /></div> 
                          <div className={classes.inputEl}><span style={{"fontWeight" : "bold"}}> </span><FormControlLabel value="C" control={<Radio />} label={` C. ${el.answer['C']}`} /></div> 
@@ -223,6 +223,11 @@ const mapDispatchToProps = dispatch => {
         deleteArrQuestion : () => dispatch({type : 'DELETE_ARR_QUESTION'})
     }
 }
+
+
+
+
+
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(Examming)  ;
